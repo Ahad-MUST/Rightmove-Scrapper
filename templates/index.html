@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rightmove Scraper</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/tokens.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/overlays.css') }}">
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ── Topbar ── -->
+  <header class="topbar">
+    <div class="topbar-brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2"   y="9" width="3" height="5" fill="#0d0d0d"/>
+          <rect x="6.5" y="5" width="3" height="9" fill="#0d0d0d"/>
+          <rect x="11"  y="2" width="3" height="12" fill="#0d0d0d"/>
+        </svg>
+      </div>
+      <span class="brand-name">rightmove/scraper</span>
+      <span class="brand-version">v2.1 PROD</span>
+    </div>
+    <div class="topbar-status">
+      <span style="color:var(--text3);font-size:.72rem;margin-right:16px;">{{ username }}</span>
+      <div class="status-dot" id="statusDot"></div>
+      <span id="statusText">idle</span>
+      <a href="/logout" style="margin-left:16px;color:var(--text3);font-size:.72rem;text-decoration:none;transition:color .15s;">Logout</a>
+    </div>
+  </header>
+
+  <div class="main">
+
+    <!-- ── Left panel: location + areas ── -->
+    <aside class="panel-left">
+
+      <div class="panel-section">
+        <div class="section-label">Location</div>
+
+        <div class="field">
+          <label class="field-label">City</label>
+          <select id="city">
+            <option value="">Select city…</option>
+            {% for city in cities %}
+            <option value="{{ city.id }}">{{ city.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Max properties per area × filter</label>
+          <select id="max_properties">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="200" selected>200</option>
+            <option value="500">500 — slow</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="panel-section" style="flex:1;">
+        <div class="section-label">Areas</div>
+        <div class="area-controls">
+          <button class="btn-ghost" id="selectAllBtn">Select all</button>
+          <button class="btn-ghost" id="clearAllBtn">Clear</button>
+        </div>
+        <div class="area-list" id="areaContainer">
+          <div style="padding:24px 8px;text-align:center;color:var(--text3);font-size:.8rem;">
+            Select a city first
+          </div>
+        </div>
+        <div class="sel-count" id="selBadge">No areas selected</div>
+      </div>
+
+    </aside>
+
+    <!-- ── Right panel: filter sets ── -->
+    <section class="panel-right">
+
+      <div class="panel-toolbar">
+        <span class="toolbar-title">Filter sets</span>
+        <div class="toolbar-actions">
+          <button class="btn-add" id="addFilterBtn">
+            <svg viewBox="0 0 13 13" fill="none">
+              <path d="M6.5 1v11M1 6.5h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            Add filter
+          </button>
+          <button class="btn-run" id="submitBtn">
+            <svg viewBox="0 0 14 14" fill="none">
+              <path d="M3 2l9 5-9 5V2z" fill="currentColor"/>
+            </svg>
+            Run scraper
+          </button>
+        </div>
+      </div>
+
+      <div class="filters-scroll" id="filtersScroll">
+        <div class="empty-state" id="emptyState">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect x="4"  y="8"    width="24" height="3" rx="1.5" fill="currentColor"/>
+            <rect x="4"  y="14.5" width="18" height="3" rx="1.5" fill="currentColor"/>
+            <rect x="4"  y="21"   width="12" height="3" rx="1.5" fill="currentColor"/>
+          </svg>
+          <div>No filter sets yet.<br>
+            Click <strong style="color:var(--text2)">Add filter</strong> to get started.
+          </div>
+        </div>
+        <div id="filterSets"></div>
+      </div>
+
+      <div class="status-bar">
+        <div class="sb-item">areas   <span class="sb-val" id="sbAreas">0</span></div>
+        <div class="sb-item">filters <span class="sb-val" id="sbFilters">0</span></div>
+        <div class="sb-item">max/run <span class="sb-val" id="sbMax">50</span></div>
+        <div style="margin-left:auto;">
+          <span class="debug-toggle" onclick="toggleDebug()">debug log</span>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</div>
+
+<!-- ── Progress overlay ── -->
+<div id="progressOverlay" class="overlay">
+  <div class="progress-modal">
+    <div class="pm-label">Scraping in progress</div>
+    <div class="pm-title" id="pmTitle">Starting…</div>
+    <div class="pm-sub"   id="pmSub"></div>
+
+    <div class="prog-track">
+      <div class="prog-fill" id="progFill"></div>
+    </div>
+    <div class="prog-pct" id="progPct">0%</div>
+
+    <div class="pm-meta">
+      <div class="pm-tag">
+        <div class="pm-tag-label">Current filter</div>
+        <div class="pm-tag-val" id="pmFilter">—</div>
+      </div>
+      <div class="pm-tag">
+        <div class="pm-tag-label">Current area</div>
+        <div class="pm-tag-val" id="pmArea">—</div>
+      </div>
+    </div>
+
+    <!-- CANCEL BUTTON IN PROGRESS OVERLAY -->
+    <div style="text-align:center;margin-top:20px;">
+      <button class="btn-cancel" id="cancelBtn">
+        <svg viewBox="0 0 14 14" fill="none">
+          <path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Cancel scrape
+      </button>
+    </div>
+
+    <div style="text-align:right;margin-top:8px;">
+      <span class="debug-toggle" onclick="toggleDebug()">debug log</span>
+    </div>
+    <div id="debugLog"></div>
+  </div>
+</div>
+
+<!-- ── Results overlay ── -->
+<div id="resultsOverlay" class="overlay">
+  <div class="results-modal">
+    <div class="rm-header">
+      <div>
+        <div class="rm-title">Scrape complete</div>
+        <div class="rm-sub" id="rmSub">Ready to download</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="rm-check">✓</div>
+        <button class="rm-close" onclick="closeResults()">✕</button>
+      </div>
+    </div>
+
+    <div class="stats-row" id="resStats"></div>
+
+    <div class="dl-row">
+      <a class="dl-btn" href="/download/excel">
+        <svg viewBox="0 0 15 15" fill="none">
+          <path d="M2 2h7l4 4v9H2V2z" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M9 2v4h4"          stroke="currentColor" stroke-width="1.2"/>
+          <path d="M5 8l2 2-2 2M8 8l2 2-2 2" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+        Excel file
+      </a>
+      <a class="dl-btn" href="/download/json">
+        <svg viewBox="0 0 15 15" fill="none">
+          <path d="M2 2h7l4 4v9H2V2z" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M9 2v4h4"          stroke="currentColor" stroke-width="1.2"/>
+          <path d="M5 9.5c0 1 .7 1.5 1.5 1.5S8 10.5 8 9.5M9 9.5c0 1 .7 1.5 1.5 1.5S12 10.5 12 9.5"
+                stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+        JSON file
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ── Error toast ── -->
+<div id="errorToast"></div>
+
+<!-- ── Data injected by Flask ── -->
+<script>
+  const CITY_AREAS = {{ city_areas | tojson }};
+</script>
+
+<!-- ── Application scripts (order matters) ── -->
+<script src="{{ url_for('static', filename='js/areas.js') }}"></script>
+<script src="{{ url_for('static', filename='js/filters.js') }}"></script>
+<script src="{{ url_for('static', filename='js/scraper.js') }}"></script>
+
+</body>
+</html>

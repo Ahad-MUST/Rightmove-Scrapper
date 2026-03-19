@@ -1,0 +1,22 @@
+[
+  {
+    "id": "london",
+    "name": "London",
+    "has_areas": true
+  },
+  {
+    "id": "manchester",
+    "name": "Manchester",
+    "has_areas": true
+  },
+  {
+    "id": "leeds",
+    "name": "Leeds",
+    "has_areas": true
+  },
+  {
+    "id": "birmingham",
+    "name": "Birmingham",
+    "has_areas": true
+  }
+]

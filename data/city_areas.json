@@ -1,0 +1,376 @@
+{
+  "london": {
+    "city_name": "London",
+    "zones": {
+      "Central London": [
+        {
+          "name": "Westminster",
+          "url_slug": "westminster",
+          "region_id": "93980"
+        },
+        {
+          "name": "Camden",
+          "url_slug": "camden",
+          "region_id": "93941"
+        },
+        {
+          "name": "Islington",
+          "url_slug": "islington",
+          "region_id": "93965"
+        },
+        {
+          "name": "Hackney",
+          "url_slug": "hackney",
+          "region_id": "93953"
+        },
+        {
+          "name": "Tower Hamlets",
+          "url_slug": "tower-hamlets",
+          "region_id": "61417"
+        },
+        {
+          "name": "Southwark",
+          "url_slug": "southwark",
+          "region_id": "61518"
+        },
+        {
+          "name": "Lambeth",
+          "url_slug": "lambeth",
+          "region_id": "93971"
+        },
+        {
+          "name": "City of London",
+          "url_slug": "city-of-london",
+          "region_id": "61224"
+        }
+      ],
+      "North London": [
+        {
+          "name": "Barnet",
+          "url_slug": "barnet",
+          "region_id": "93929"
+        },
+        {
+          "name": "Enfield",
+          "url_slug": "enfield",
+          "region_id": "93950"
+        },
+        {
+          "name": "Haringey",
+          "url_slug": "haringey",
+          "region_id": "61227"
+        },
+        {
+          "name": "Waltham Forest",
+          "url_slug": "waltham-forest",
+          "region_id": "61232"
+        }
+      ],
+      "East London": [
+        {
+          "name": "Newham",
+          "url_slug": "newham-london-borough",
+          "region_id": "61231"
+        },
+        {
+          "name": "Redbridge",
+          "url_slug": "redbridge-london-borough",
+          "region_id": "61537"
+        },
+        {
+          "name": "Havering",
+          "url_slug": "havering-london-borough",
+          "region_id": "61228"
+        },
+        {
+          "name": "Barking and Dagenham",
+          "url_slug": "barking-and-dagenham-london-borough",
+          "region_id": "61400"
+        }
+      ],
+      "South London": [
+        {
+          "name": "Croydon",
+          "url_slug": "croydon-london-borough",
+          "region_id": "93944"
+        },
+        {
+          "name": "Bromley",
+          "url_slug": "bromley-london-borough",
+          "region_id": "93938"
+        },
+        {
+          "name": "Lewisham",
+          "url_slug": "lewisham-london-borough",
+          "region_id": "61413"
+        },
+        {
+          "name": "Greenwich",
+          "url_slug": "greenwich-london-borough",
+          "region_id": "61226"
+        },
+        {
+          "name": "Bexley",
+          "url_slug": "bexley-london-borough",
+          "region_id": "93932"
+        },
+        {
+          "name": "Wandsworth",
+          "url_slug": "wandsworth",
+          "region_id": "93977"
+        },
+        {
+          "name": "Merton",
+          "url_slug": "merton-london-borough",
+          "region_id": "61414"
+        },
+        {
+          "name": "Sutton",
+          "url_slug": "sutton-london-borough",
+          "region_id": "93974"
+        },
+        {
+          "name": "Kingston upon Thames",
+          "url_slug": "kingston-upon-thames-royal-borough",
+          "region_id": "93968"
+        }
+        
+      ],
+      "West London": [
+        {
+          "name": "Ealing",
+          "url_slug": "ealing-london-borough",
+          "region_id": "93947"
+        },
+        {
+          "name": "Hounslow",
+          "url_slug": "hounslow-london-borough",
+          "region_id": "93962"
+        },
+        {
+          "name": "Hillingdon",
+          "url_slug": "hillingdon-london-borough",
+          "region_id": "93959"
+        },
+        {
+          "name": "Brent",
+          "url_slug": "brent",
+          "region_id": "93935"
+        },
+        {
+          "name": "Harrow",
+          "url_slug": "harrow-london-borough",
+          "region_id": "93956"
+        },
+        {
+          "name": "Hammersmith and Fulham",
+          "url_slug": "hammersmith-and-fulham",
+          "region_id": "61407"
+        },
+        {
+          "name": "Kensington and Chelsea",
+          "url_slug": "kensington-and-chelsea-royal-borough",
+          "region_id": "61229"
+        },
+        {
+          "name": "Richmond upon Thames",
+          "url_slug": "richmond-upon-thames-london-borough",
+          "region_id": "61415"
+        },
+        
+        {
+          "name": "Taplow",
+          "url_slug": "taplow"
+        },
+        {
+          "name": "Bracknell",
+          "url_slug": "bracknell"
+        },
+        {
+          "name": "Chalvey",
+          "url_slug": "chalvey"
+        },
+        {
+          "name": "Britwell",
+          "url_slug": "britwell"
+        },
+        {
+          "name": "Farnham Road",
+          "url_slug": "farnham-road"
+        }
+
+      ]
+    }
+  },
+  "manchester": {
+    "city_name": "Manchester",
+    "zones": {
+      "Greater Manchester": [
+        {
+          "name": "Manchester City Centre",
+          "url_slug": "manchester",
+          "region_id": "94019"
+        },
+        {
+          "name": "Salford",
+          "url_slug": "salford",
+          "region_id": "61423"
+        },
+        {
+          "name": "Trafford",
+          "url_slug": "trafford",
+          "region_id": "61539"
+        },
+        {
+          "name": "Stockport",
+          "url_slug": "stockport",
+          "region_id": "94262"
+        },
+        {
+          "name": "Bolton",
+          "url_slug": "bolton",
+          "region_id": "61196"
+        },
+        {
+          "name": "Bury",
+          "url_slug": "bury-greater-manchester",
+          "region_id": "61204"
+        },
+        {
+          "name": "Rochdale",
+          "url_slug": "rochdale",
+          "region_id": "61480"
+        },
+        {
+          "name": "Oldham",
+          "url_slug": "oldham",
+          "region_id": "61424"
+        },
+        {
+          "name": "Tameside",
+          "url_slug": "tameside",
+          "region_id": "61523"
+        },
+        {
+          "name": "Wigan",
+          "url_slug": "wigan",
+          "region_id": "61579"
+        }
+      ]
+    }
+  },
+  "leeds": {
+    "city_name": "Leeds",
+    "zones": {
+      "Leeds": [
+        {
+          "name": "Leeds City Centre",
+          "url_slug": "leeds",
+          "region_id": "787"
+        },
+        {
+          "name": "Chapel Allerton",
+          "url_slug": "chapel-allerton-leeds",
+          "region_id": "787"
+        },
+        {
+          "name": "Headingley",
+          "url_slug": "headingley",
+          "region_id": "787"
+        },
+        {
+          "name": "Horsforth",
+          "url_slug": "horsforth",
+          "region_id": "787"
+        },
+        {
+          "name": "Roundhay",
+          "url_slug": "roundhay",
+          "region_id": "787"
+        },
+        {
+          "name": "Moortown",
+          "url_slug": "moortown-leeds",
+          "region_id": "787"
+        },
+        {
+          "name": "Wetherby",
+          "url_slug": "wetherby",
+          "region_id": "787"
+        },
+        {
+          "name": "Morley",
+          "url_slug": "morley-west-yorkshire",
+          "region_id": "787"
+        },
+        {
+          "name": "Pudsey",
+          "url_slug": "pudsey",
+          "region_id": "787"
+        },
+        {
+          "name": "Rothwell",
+          "url_slug": "rothwell-west-yorkshire",
+          "region_id": "787"
+        }
+      ]
+    }
+  },
+  "birmingham": {
+    "city_name": "Birmingham",
+    "zones": {
+      "Birmingham": [
+        {
+          "name": "Birmingham City Centre",
+          "url_slug": "birmingham",
+          "region_id": "2987"
+        },
+        {
+          "name": "Edgbaston",
+          "url_slug": "edgbaston",
+          "region_id": "2987"
+        },
+        {
+          "name": "Harborne",
+          "url_slug": "harborne",
+          "region_id": "2987"
+        },
+        {
+          "name": "Moseley",
+          "url_slug": "moseley-west-midlands",
+          "region_id": "2987"
+        },
+        {
+          "name": "Solihull",
+          "url_slug": "solihull",
+          "region_id": "61508"
+        },
+        {
+          "name": "Sutton Coldfield",
+          "url_slug": "sutton-coldfield",
+          "region_id": "2987"
+        },
+        {
+          "name": "Kings Heath",
+          "url_slug": "kings-heath",
+          "region_id": "2987"
+        },
+        {
+          "name": "Selly Oak",
+          "url_slug": "selly-oak",
+          "region_id": "2987"
+        },
+        {
+          "name": "Erdington",
+          "url_slug": "erdington",
+          "region_id": "2987"
+        },
+        {
+          "name": "Northfield",
+          "url_slug": "northfield-west-midlands",
+          "region_id": "2987"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,222 @@
+/* ── Shared overlay backdrop ─────────────────────────────────────────────── */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+.overlay.active { display: flex; }
+
+/* ── Progress modal ──────────────────────────────────────────────────────── */
+.progress-modal {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius2);
+  width: 520px;
+  padding: 32px;
+}
+
+.pm-label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+/* Decorative line extending to the right of the label */
+.pm-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.pm-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.pm-sub {
+  font-size: .82rem;
+  color: var(--text2);
+  margin-bottom: 24px;
+  min-height: 20px;
+}
+
+/* Progress bar */
+.prog-track {
+  background: var(--surface3);
+  border-radius: 2px;
+  height: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.prog-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  width: 0%;
+  transition: width .4s ease;
+}
+.prog-pct {
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--text3);
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+/* Meta tags (filter / area) */
+.pm-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.pm-tag {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  font-size: .75rem;
+}
+.pm-tag-label {
+  color: var(--text3);
+  font-family: var(--mono);
+  font-size: .65rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 3px;
+}
+.pm-tag-val {
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+/* Grid cells don't shrink below content size by default — fix for ellipsis to fire */
+.pm-meta .pm-tag { min-width: 0; }
+
+/* ── Results modal ───────────────────────────────────────────────────────── */
+.results-modal {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius2);
+  width: 480px;
+  padding: 32px;
+}
+
+.rm-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.rm-check {
+  width: 36px;
+  height: 36px;
+  background: rgba(71,255,138,.1);
+  border: 1px solid var(--green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green);
+  font-size: 1.1rem;
+}
+.rm-close {
+  background: transparent;
+  border: none;
+  color: var(--text3);
+  cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 0;
+}
+.rm-close:hover { color: var(--text); }
+.rm-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; }
+.rm-sub   { font-size: .82rem; color: var(--text2); }
+
+/* Stats row */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.stat-box {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 12px;
+  text-align: center;
+}
+.stat-num {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-lbl {
+  font-family: var(--mono);
+  font-size: .65rem;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+/* Download buttons */
+.dl-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.dl-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border-radius: var(--radius);
+  font-size: .82rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all .15s;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  color: var(--text2);
+  background: var(--surface2);
+}
+.dl-btn:hover { border-color: var(--accent); color: var(--accent); }
+.dl-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+/* ── Error toast ─────────────────────────────────────────────────────────── */
+#errorToast {
+  display: none;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--surface);
+  border: 1px solid var(--red);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  font-size: .82rem;
+  color: var(--red);
+  z-index: 300;
+  max-width: 360px;
+  animation: slideUp .2s ease;
+}
+#errorToast.active { display: block; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

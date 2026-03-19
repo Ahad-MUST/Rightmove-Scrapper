@@ -1,0 +1,20 @@
+# Flask and Web Server
+Flask==3.0.0
+gunicorn==21.2.0  # Linux/Mac WSGI server
+waitress==2.1.2   # Windows WSGI server
+
+# Task Queue
+celery==5.3.4
+redis==5.0.1
+
+# Web Scraping
+selenium==4.15.2
+webdriver-manager==4.0.1
+beautifulsoup4==4.12.2
+
+# Data Processing
+pandas==2.1.4
+openpyxl==3.1.2
+
+# Utilities
+python-dotenv==1.0.0

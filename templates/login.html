@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Rightmove Scraper</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/tokens.css') }}">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: var(--bg);
+    }
+    .login-container {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 12px;
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .login-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .login-header h1 {
+      color: var(--text);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .login-header p {
+      color: var(--text3);
+      font-size: 0.9rem;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      color: var(--text2);
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      transition: border-color 0.15s;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .btn-login {
+      width: 100%;
+      padding: 14px;
+      background: var(--accent);
+      border: none;
+      border-radius: 6px;
+      color: #0d0d0d;
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-login:hover {
+      background: var(--accent2);
+    }
+    .flash-message {
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+    .flash-error {
+      background: rgba(255, 77, 77, 0.1);
+      border: 1px solid var(--red);
+      color: var(--red);
+    }
+    .flash-success {
+      background: rgba(71, 255, 138, 0.1);
+      border: 1px solid var(--green);
+      color: var(--green);
+    }
+    .flash-info {
+      background: rgba(71, 184, 255, 0.1);
+      border: 1px solid var(--blue);
+      color: var(--blue);
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-header">
+      <h1>Rightmove Scraper</h1>
+      <p>Production Multi-User System</p>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash-message flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('login') }}">
+      <div class="form-group">
+        <label class="form-label" for="username">Username</label>
+        <input type="text" id="username" name="username" class="form-input" required autofocus>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <input type="password" id="password" name="password" class="form-input" required>
+      </div>
+      
+      <button type="submit" class="btn-login">Login</button>
+    </form>
+  </div>
+</body>
+</html>
